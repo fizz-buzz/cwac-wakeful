@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.commonsware</groupId>
+  <artifactId>cwac-wakefulintentservice</artifactId>
+  <version>1.0-SNAPSHOT</version>
+
+  <properties>
+    <android-target-sdk>17</android-target-sdk>
+
+    <!-- dependency versions -->
+    <android.version>4.2.2</android.version>
+
+  </properties>
+  <dependencies>
+    <!-- 3rd party provided dependencies, alpha by groupId/artifactId -->
+    <dependency>
+      <groupId>com.google.android</groupId>
+      <artifactId>android</artifactId>
+      <version>${android.version}</version>
+      <scope>provided</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+  </dependencies>
+
+  <build>
+      <sourceDirectory>src</sourceDirectory>
+
+    <plugins>
+      <plugin>
+        <groupId>com.jayway.maven.plugins.android.generation2</groupId>
+        <artifactId>android-maven-plugin</artifactId>
+        <version>3.3.0</version>
+
+        <!-- enables definition of package types (e.g. apk) by android-maven-plugin -->
+        <extensions>true</extensions>
+
+        <configuration>
+          <dex>
+            <jvmArguments>
+              <jvmArgument>-Xms256m</jvmArgument>
+              <jvmArgument>-Xmx1024m</jvmArgument>
+            </jvmArguments>
+          </dex>
+          <sdk>
+            <platform>${android-target-sdk}</platform>
+          </sdk>
+        </configuration>
+
+      </plugin>
+    </plugins>
+  </build>
+</project>
